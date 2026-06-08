@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore the Taste Haven Menu. From Royal Eggs Benedict to Gold-Leaf Ribeye, browse our curated fine-dining categories.">
+    <title>Our Menu | Taste Haven Restaurant</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo" id="header-logo">
+                <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M102 24c0-13.3-10.7-24-24-24S54 10.7 54 24v170.7c0 23.3 11.5 44.9 30.8 58l8.2 5.5v185.8c0 13.3 10.7 24 24 24s24-10.7 24-24V258.2l8.2-5.5c19.3-13 30.8-34.7 30.8-58V24c0-13.3-10.7-24-24-24s-24 10.7-24 24v120h-10V24c0-13.3-10.7-24-24-24S98 10.7 98 24v120H88V24zm346 136V24c0-13.3-10.7-24-24-24s-24 10.7-24 24v200c0 13.3-10.7 24-24 24h-10v216c0 13.3 10.7 24 24 24s24-10.7 24-24V272h10c44.2 0 80-35.8 80-80v-32c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/>
+                </svg>
+                <span>Taste Haven</span>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html" class="active">Menu</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li class="nav-user-btn-container">
+                    <!-- Loaded dynamically via js -->
+                </li>
+            </ul>
+
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <a href="cart.html" class="nav-cart-btn" id="nav-cart-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.9 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12H18.5c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.37-.66-.11-1.48-.87-1.48H5.21l-.94-2H1v2h2l3.6 7.59-1.35 2.44C4.52 15.37 5.48 17 7 17h12v-2H7.84c-.83 0-1.54-.5-1.67-1.25z"/>
+                    </svg>
+                    <span class="cart-count">0</span>
+                </a>
+                
+                <div class="hamburger" id="hamburger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Nav Overlay -->
+    <div class="mobile-nav-overlay">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html" class="active">Menu</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html">Login / Register</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="cart.html">Cart</a></li>
+        </ul>
+    </div>
+
+    <!-- Page Subheader -->
+    <section class="page-header" style="background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1600&q=80');">
+        <div class="page-header-overlay"></div>
+        <div class="page-header-content">
+            <h1>Our Menu</h1>
+            <div class="breadcrumbs">
+                <a href="index.html">Home</a>
+                <span class="text-gold">&bull;</span>
+                <span class="text-gold">Menu</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="section-padding container">
+        
+        <!-- Controls: Filters and Search -->
+        <div class="menu-controls">
+            <div class="search-filter-wrapper">
+                <!-- Search bar -->
+                <div class="search-bar-container">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                    </svg>
+                    <input type="text" id="search-food" class="search-input" placeholder="Search culinary creations...">
+                </div>
+
+                <!-- Category Filters -->
+                <div class="category-filters">
+                    <button class="filter-btn active" data-category="all">All</button>
+                    <button class="filter-btn" data-category="breakfast">Breakfast</button>
+                    <button class="filter-btn" data-category="lunch">Lunch</button>
+                    <button class="filter-btn" data-category="dinner">Dinner</button>
+                    <button class="filter-btn" data-category="drinks">Drinks</button>
+                    <button class="filter-btn" data-category="desserts">Desserts</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dynamic Menu Grid -->
+        <div class="card-grid" id="menu-grid">
+            <!-- Dynamic Injection of Cards -->
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-about">
+                <a href="index.html" class="logo" style="margin-bottom: 20px; display: inline-flex;">
+                    <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M102 24c0-13.3-10.7-24-24-24S54 10.7 54 24v170.7c0 23.3 11.5 44.9 30.8 58l8.2 5.5v185.8c0 13.3 10.7 24 24 24s24-10.7 24-24V258.2l8.2-5.5c19.3-13 30.8-34.7 30.8-58V24c0-13.3-10.7-24-24-24s-24 10.7-24 24v120h-10V24c0-13.3-10.7-24-24-24S98 10.7 98 24v120H88V24zm346 136V24c0-13.3-10.7-24-24-24s-24 10.7-24 24v200c0 13.3-10.7 24-24 24h-10v216c0 13.3 10.7 24 24 24s24-10.7 24-24V272h10c44.2 0 80-35.8 80-80v-32c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/>
+                    </svg>
+                    <span>Taste Haven</span>
+                </a>
+                <p>Taste Haven is a premium sanctuary of gastronomy, celebrating culinary excellence, timeless style, and authentic hospitality.</p>
+                <div class="social-links">
+                    <a href="#" class="social-btn">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/></svg>
+                    </a>
+                    <a href="#" class="social-btn">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.31 2c3.22 0 3.6.01 4.87.07 1.17.05 1.8.25 2.22.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.37 1.05.42 2.22.06 1.27.07 1.65.07 4.87s-.01 3.6-.07 4.87c-.05 1.17-.25 1.8-.42 2.22-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.05.37-2.22.42-1.27.06-1.65.07-4.87.07s-3.6-.01-4.87-.07c-1.17-.05-1.8-.25-2.22-.42-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.17-.42-.37-1.05-.42-2.22C2.01 15.6 2 15.22 2 12s.01-3.6.07-4.87c.05-1.17.25-1.8.42-2.22.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.05-.37 2.22-.42C8.71 2.01 9.09 2 12.31 2M12 5.86c-3.39 0-6.14 2.75-6.14 6.14s2.75 6.14 6.14 6.14 6.14-2.75 6.14-6.14S15.39 5.86 12 5.86M12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4M18.4 4.37c-.79 0-1.44.65-1.44 1.44s.65 1.44 1.44 1.44 1.44-.65 1.44-1.44-.65-1.44-1.44-1.44z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="footer-col-title">Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html">Our Menu</a></li>
+                    <li><a href="about.html">About Taste Haven</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-col-title">Opening Hours</h4>
+                <ul class="footer-links" style="color: var(--color-grey-text-muted); font-size: 0.9rem;">
+                    <li style="display: flex; justify-content: space-between;"><span>Mon - Thu:</span> <span class="text-gold">17:00 - 23:00</span></li>
+                    <li style="display: flex; justify-content: space-between;"><span>Fri - Sat:</span> <span class="text-gold">16:00 - 00:00</span></li>
+                    <li style="display: flex; justify-content: space-between;"><span>Sunday:</span> <span class="text-gold">12:00 - 22:00</span></li>
+                </ul>
+            </div>
+
+            <div class="footer-newsletter">
+                <h4 class="footer-col-title">Newsletter</h4>
+                <p>Subscribe to receive updates on exclusive guest tables, tasting dinners, and seasonal menu launches.</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); showToast('Subscribed successfully!', 'success'); this.reset();">
+                    <input type="email" class="newsletter-input" placeholder="Your Email Address" required>
+                    <button type="submit" class="newsletter-btn">Join</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Taste Haven Restaurant. All rights reserved.</p>
+            <p>Designed with Black & Gold Excellence</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/menu.js"></script>
+</body>
+</html>

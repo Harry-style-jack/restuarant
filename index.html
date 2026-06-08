@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Indulge in a premium fine-dining experience at Taste Haven Restaurant. Culinary mastery wrapped in gold, black, and grey aesthetics.">
+    <title>Taste Haven Restaurant | Premium Culinary Experience</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo" id="header-logo">
+                <!-- Golden Fork and Knife Crest SVG -->
+                <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M102 24c0-13.3-10.7-24-24-24S54 10.7 54 24v170.7c0 23.3 11.5 44.9 30.8 58l8.2 5.5v185.8c0 13.3 10.7 24 24 24s24-10.7 24-24V258.2l8.2-5.5c19.3-13 30.8-34.7 30.8-58V24c0-13.3-10.7-24-24-24s-24 10.7-24 24v120h-10V24c0-13.3-10.7-24-24-24S98 10.7 98 24v120H88V24zm346 136V24c0-13.3-10.7-24-24-24s-24 10.7-24 24v200c0 13.3-10.7 24-24 24h-10v216c0 13.3 10.7 24 24 24s24-10.7 24-24V272h10c44.2 0 80-35.8 80-80v-32c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/>
+                </svg>
+                <span>Taste Haven</span>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li class="nav-user-btn-container">
+                    <!-- Loaded dynamically via js -->
+                </li>
+            </ul>
+
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <!-- Cart Icon -->
+                <a href="cart.html" class="nav-cart-btn" id="nav-cart-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.9 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12H18.5c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.37-.66-.11-1.48-.87-1.48H5.21l-.94-2H1v2h2l3.6 7.59-1.35 2.44C4.52 15.37 5.48 17 7 17h12v-2H7.84c-.83 0-1.54-.5-1.67-1.25z"/>
+                    </svg>
+                    <span class="cart-count">0</span>
+                </a>
+                
+                <!-- Hamburger for mobile -->
+                <div class="hamburger" id="hamburger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Nav Overlay -->
+    <div class="mobile-nav-overlay">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html">Login / Register</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="cart.html">Cart</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" style="background-image: url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1600&q=80');">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h5 class="hero-tagline">Exquisite Gastronomy</h5>
+            <h1 class="hero-title">
+                Symphony of Flavors
+                <span>Taste Haven Restaurant</span>
+            </h1>
+            <p class="hero-desc">
+                Immerse yourself in a luxurious fine-dining experience where master chefs blend fresh seasonal ingredients with premium culinary artistry.
+            </p>
+            <div class="hero-actions">
+                <a href="menu.html" class="btn btn-primary" id="hero-order-btn">Order Now</a>
+                <a href="menu.html" class="btn btn-secondary" id="hero-menu-btn">View Menu</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="section-padding container">
+        <div class="section-header">
+            <span class="section-subtitle">Our Philosophy</span>
+            <h2 class="section-title">Why Dine With Us</h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon-wrapper">
+                    <!-- Chef hat icon -->
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C7.58 2 4 5.58 4 10c0 1.25.29 2.43.8 3.5l-1.6 4.8c-.3.9.4 1.7 1.3 1.4l4.8-1.6c1.07.51 2.25.8 3.5.8 4.42 0 8-3.58 8-8s-3.58-8-8-8zm4 10h-8V9h8v3z"/>
+                    </svg>
+                </div>
+                <h3 class="feature-title">Master Chefs</h3>
+                <p class="feature-desc">Our kitchen is led by award-winning culinary designers creating innovative, delicious plates.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon-wrapper">
+                    <!-- Meat/Ingredent Icon -->
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/>
+                    </svg>
+                </div>
+                <h3 class="feature-title">Prime Ingredients</h3>
+                <p class="feature-desc">We source only organic heirloom greens and certified high-grade meats for every menu dish.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon-wrapper">
+                    <!-- Wine Glass Icon -->
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z" style="display:none;"/>
+                        <!-- Real Wine Glass path -->
+                        <path d="M12 2L4 9v2c0 4.42 3.58 8 8 8s8-3.58 8-8V9l-8-7zM6 10.4V11c0 3.31 2.69 6 6 6s6-2.69 6-6v-.6L12 6.4l-6 4zM11 20h2v2h-2v-2z"/>
+                    </svg>
+                </div>
+                <h3 class="feature-title">Exclusive Ambience</h3>
+                <p class="feature-desc">Our gold-lit, luxurious seating offers an intimate, premium atmosphere perfect for celebrations.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon-wrapper">
+                    <!-- Cloche Icon -->
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12h20c0-5.52-4.48-10-10-10zm0 18c4.42 0 8-3.58 8-8H4c0 4.42 3.58 8 8 8zm0-16c.55 0 1-.45 1-1V2h-2v1c0 .55.45 1 1 1z"/>
+                    </svg>
+                </div>
+                <h3 class="feature-title">Bespoke Service</h3>
+                <p class="feature-desc">Enjoy world-class service with personal sommeliers and servers dedicated to your table's experience.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Dishes Section -->
+    <section class="section-padding" style="background-color: var(--color-bg-dark); border-top: 1px solid var(--color-grey-divider); border-bottom: 1px solid var(--color-grey-divider);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Chef Recommendations</span>
+                <h2 class="section-title">Featured Culinary Art</h2>
+            </div>
+            
+            <div class="card-grid">
+                <!-- Card 1 -->
+                <div class="premium-card">
+                    <div class="dish-img-container">
+                        <img class="dish-img" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" alt="Prime Gold-Leaf Ribeye Steak">
+                        <span class="dish-category-tag">Dinner</span>
+                    </div>
+                    <div class="dish-content">
+                        <div class="dish-header">
+                            <h3 class="dish-title">Gold-Leaf Ribeye</h3>
+                            <span class="dish-price">$58.00</span>
+                        </div>
+                        <p class="dish-desc">45-day dry-aged ribeye steak, seared with herb butter, wrapped in 24k edible gold leaf, and served with red wine reduction.</p>
+                        <div class="dish-footer">
+                            <a href="menu.html" class="btn btn-secondary btn-small" style="width: 100%;">View in Menu</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="premium-card">
+                    <div class="dish-img-container">
+                        <img class="dish-img" src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=80" alt="Saffron Lobster Bisque">
+                        <span class="dish-category-tag">Lunch</span>
+                    </div>
+                    <div class="dish-content">
+                        <div class="dish-header">
+                            <h3 class="dish-title">Saffron Lobster Bisque</h3>
+                            <span class="dish-price">$22.00</span>
+                        </div>
+                        <p class="dish-desc">A rich, velvety soup made from roasted lobster shells, finished with Persian saffron threads and cognac cream.</p>
+                        <div class="dish-footer">
+                            <a href="menu.html" class="btn btn-secondary btn-small" style="width: 100%;">View in Menu</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="premium-card">
+                    <div class="dish-img-container">
+                        <img class="dish-img" src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=600&q=80" alt="Gold Dust Chocolate Soufflé">
+                        <span class="dish-category-tag">Desserts</span>
+                    </div>
+                    <div class="dish-content">
+                        <div class="dish-header">
+                            <h3 class="dish-title">Gold Chocolate Soufflé</h3>
+                            <span class="dish-price">$16.50</span>
+                        </div>
+                        <p class="dish-desc">Warm dark Belgian chocolate soufflé with a liquid chocolate center, topped with a dusting of 24k edible gold dust.</p>
+                        <div class="dish-footer">
+                            <a href="menu.html" class="btn btn-secondary btn-small" style="width: 100%;">View in Menu</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="menu.html" class="btn btn-primary">Discover Full Menu</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Testimonials Section -->
+    <section class="section-padding container">
+        <div class="section-header">
+            <span class="section-subtitle">Guest Experience</span>
+            <h2 class="section-title">What Our Guests Say</h2>
+        </div>
+        <div class="testimonials-grid">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-card">
+                <div class="star-rating">
+                    <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                </div>
+                <p class="testimonial-quote">
+                    "The gold-leaf ribeye steak was absolutely phenomenal, cooked to a perfect medium rare. The service here is unparalleled. Truly a luxury dining sanctuary."
+                </p>
+                <div class="testimonial-author">
+                    <img class="author-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&h=100&q=80" alt="Marcus Vancamp">
+                    <div>
+                        <h4 class="author-name">Marcus Vancamp</h4>
+                        <span class="author-role">Culinary Critic</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="testimonial-card">
+                <div class="star-rating">
+                    <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                </div>
+                <p class="testimonial-quote">
+                    "Taste Haven makes every meal feel like a special occasion. The atmosphere is stunning, decorated in dark tones with gold lights. The Saffron Bisque is to die for."
+                </p>
+                <div class="testimonial-author">
+                    <img class="author-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&h=100&q=80" alt="Elena Rostova">
+                    <div>
+                        <h4 class="author-name">Elena Rostova</h4>
+                        <span class="author-role">Connoisseur</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="testimonial-card">
+                <div class="star-rating">
+                    <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                </div>
+                <p class="testimonial-quote">
+                    "From the smoked Old Fashioned cocktail to the Pistachio Crème Brûlée, everything was a masterpiece. Highly recommend their private dining room services."
+                </p>
+                <div class="testimonial-author">
+                    <img class="author-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&h=100&q=80" alt="David Sterling">
+                    <div>
+                        <h4 class="author-name">David Sterling</h4>
+                        <span class="author-role">Regular Patron</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <!-- Col 1: Brand -->
+            <div class="footer-about">
+                <a href="index.html" class="logo" style="margin-bottom: 20px; display: inline-flex;">
+                    <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M102 24c0-13.3-10.7-24-24-24S54 10.7 54 24v170.7c0 23.3 11.5 44.9 30.8 58l8.2 5.5v185.8c0 13.3 10.7 24 24 24s24-10.7 24-24V258.2l8.2-5.5c19.3-13 30.8-34.7 30.8-58V24c0-13.3-10.7-24-24-24s-24 10.7-24 24v120h-10V24c0-13.3-10.7-24-24-24S98 10.7 98 24v120H88V24zm346 136V24c0-13.3-10.7-24-24-24s-24 10.7-24 24v200c0 13.3-10.7 24-24 24h-10v216c0 13.3 10.7 24 24 24s24-10.7 24-24V272h10c44.2 0 80-35.8 80-80v-32c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/>
+                    </svg>
+                    <span>Taste Haven</span>
+                </a>
+                <p>Taste Haven is a premium sanctuary of gastronomy, celebrating culinary excellence, timeless style, and authentic hospitality.</p>
+                <div class="social-links">
+                    <a href="#" class="social-btn">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/></svg>
+                    </a>
+                    <a href="#" class="social-btn">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.31 2c3.22 0 3.6.01 4.87.07 1.17.05 1.8.25 2.22.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.37 1.05.42 2.22.06 1.27.07 1.65.07 4.87s-.01 3.6-.07 4.87c-.05 1.17-.25 1.8-.42 2.22-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.05.37-2.22.42-1.27.06-1.65.07-4.87.07s-3.6-.01-4.87-.07c-1.17-.05-1.8-.25-2.22-.42-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.17-.42-.37-1.05-.42-2.22C2.01 15.6 2 15.22 2 12s.01-3.6.07-4.87c.05-1.17.25-1.8.42-2.22.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.05-.37 2.22-.42C8.71 2.01 9.09 2 12.31 2M12 5.86c-3.39 0-6.14 2.75-6.14 6.14s2.75 6.14 6.14 6.14 6.14-2.75 6.14-6.14S15.39 5.86 12 5.86M12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4M18.4 4.37c-.79 0-1.44.65-1.44 1.44s.65 1.44 1.44 1.44 1.44-.65 1.44-1.44-.65-1.44-1.44-1.44z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Col 2: Navigation links -->
+            <div>
+                <h4 class="footer-col-title">Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html">Our Menu</a></li>
+                    <li><a href="about.html">About Taste Haven</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 3: Hours -->
+            <div>
+                <h4 class="footer-col-title">Opening Hours</h4>
+                <ul class="footer-links" style="color: var(--color-grey-text-muted); font-size: 0.9rem;">
+                    <li style="display: flex; justify-content: space-between;"><span>Mon - Thu:</span> <span class="text-gold">17:00 - 23:00</span></li>
+                    <li style="display: flex; justify-content: space-between;"><span>Fri - Sat:</span> <span class="text-gold">16:00 - 00:00</span></li>
+                    <li style="display: flex; justify-content: space-between;"><span>Sunday:</span> <span class="text-gold">12:00 - 22:00</span></li>
+                </ul>
+            </div>
+
+            <!-- Col 4: Newsletter -->
+            <div class="footer-newsletter">
+                <h4 class="footer-col-title">Newsletter</h4>
+                <p>Subscribe to receive updates on exclusive guest tables, tasting dinners, and seasonal menu launches.</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); showToast('Subscribed successfully!', 'success'); this.reset();">
+                    <input type="email" class="newsletter-input" placeholder="Your Email Address" required>
+                    <button type="submit" class="newsletter-btn">Join</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Bottom details -->
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Taste Haven Restaurant. All rights reserved.</p>
+            <p>Designed with Black & Gold Excellence</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
