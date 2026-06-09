@@ -2,37 +2,36 @@
 
 :root {
     /* Color Palette */
-    --color-bg-deep: #080808;      /* Deep black for background */
-    --color-bg-dark: #121212;      /* Off-black for sections/cards */
-    --color-bg-card: #1a1a1a;      /* Medium dark grey for cards */
-    --color-bg-input: #242424;     /* Light dark grey for input fields */
-    
-    --color-gold-light: #f3e5ab;   /* Warm soft gold */
-    --color-gold: #c5a059;         /* Core premium gold */
-    --color-gold-dark: #99783c;    /* Deep gold for borders/shadows */
+    --color-bg-deep: #080808;
+    /* Deep black for background */
+    --color-bg-dark: #121212;
+    /* Off-black for sections/cards */
+    --color-bg-card: #1a1a1a;
+    /* Medium dark grey for cards */
+    --color-bg-input: #242424;
+    /* Light dark grey for input fields */
+
+    --color-gold-light: #f3e5ab;
+    /* Warm soft gold */
+    --color-gold: #c5a059;
+    --color-gold-hover: #d4af37;
+    /* New variable for hover states */
+    /* Core premium gold */
+    --color-gold-dark: #99783c;
+    /* Deep gold for borders/shadows */
     --color-gold-glow: rgba(197, 160, 89, 0.4);
-    
-    --color-grey-divider: #282828; /* Thin borders and dividers */
-    --color-grey-text-muted: #8a8a8f; /* Muted subtitle/paragraph text */
-    --color-grey-border: #444;     /* Strong borders */
-    
+
+    --color-grey-divider: #282828;
+    /* Thin borders and dividers */
+    --color-grey-text-muted: #8a8a8f;
+    /* Muted subtitle/paragraph text */
+    --color-grey-border: #444;
+    /* Strong borders */
+
     --color-white: #ffffff;
-    --color-success: #2ecc71;      /* Success notifications */
-    --color-error: #e74c3c;        /* Validation/Error states */
-    
-    /* Fonts */
-    --font-heading: 'Playfair Display', serif;
-    --font-body: 'Montserrat', sans-serif;
-    
-    /* Spacings & Borders */
-    --border-radius-sm: 4px;
-    --border-radius-md: 8px;
-    --border-radius-lg: 16px;
-    --border-radius-full: 9999px;
-    --transition-speed: 0.3s;
-    --transition-curve: cubic-bezier(0.25, 0.8, 0.25, 1);
-    
-    --header-height: 80px;
+    --color-success: #2ecc71;
+    /* Success notifications */
+    --color-error: #e74c3c;
 }
 
 /* Base resets & styles */
@@ -56,7 +55,12 @@ body {
     overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: var(--font-heading);
     font-weight: 600;
     letter-spacing: 0.5px;
@@ -70,7 +74,10 @@ a {
     transition: color var(--transition-speed) var(--transition-curve);
 }
 
-button, input, textarea, select {
+button,
+input,
+textarea,
+select {
     font-family: inherit;
     font-size: inherit;
     color: inherit;
@@ -233,10 +240,27 @@ header.scrolled {
 .nav-user-btn-container {
     display: flex;
     align-items: center;
-    margin-left: 15px; /* Give space for the content inside/around the user container */
+    margin-left: 15px;
+    /* Give space for the content inside/around the user container */
 }
 
-.nav-user-btn {
+.nav-user-btn.user-logged-in {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 1px solid var(--color-gold);
+    background-color: rgba(197, 160, 89, 0.04);
+    padding: 8px 20px 8px 12px;
+    /* Adjusted padding for avatar */
+    border-radius: var(--border-radius-full);
+    transition: all var(--transition-speed) var(--transition-curve);
+    white-space: nowrap;
+}
+
+.nav-user-btn.user-logged-out {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -251,6 +275,33 @@ header.scrolled {
     white-space: nowrap;
 }
 
+.nav-user-btn .profile-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--color-gold-dark);
+}
+
+.nav-user-btn .profile-initials {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: var(--color-gold);
+    color: var(--color-bg-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border: 1px solid var(--color-gold-dark);
+}
+
+.nav-user-btn .user-greeting {
+    margin-left: 5px;
+    /* Space between avatar/icon and text */
+}
+
 .nav-user-btn svg {
     width: 16px;
     height: 16px;
@@ -258,7 +309,8 @@ header.scrolled {
     transition: transform var(--transition-speed);
 }
 
-.nav-user-btn:hover {
+.nav-user-btn.user-logged-in:hover,
+.nav-user-btn.user-logged-out:hover {
     background-color: var(--color-gold);
     color: var(--color-bg-deep);
     border-color: var(--color-gold);
@@ -267,6 +319,7 @@ header.scrolled {
 
 .nav-user-btn:hover svg {
     transform: scale(1.1);
+    /* Apply to SVG only */
 }
 
 /* Mobile Hamburger */
@@ -325,12 +378,6 @@ header.scrolled {
     background-color: transparent;
 }
 
-.btn-secondary:hover {
-    background-color: var(--color-gold);
-    color: var(--color-bg-deep);
-    box-shadow: 0 0 20px var(--color-gold-glow);
-    transform: translateY(-2px);
-}
 
 .btn-dark {
     background-color: var(--color-bg-card);
@@ -438,6 +485,7 @@ header.scrolled {
     .hero-title {
         font-size: 2.8rem;
     }
+
     .hero-actions {
         flex-direction: column;
         gap: 15px;
@@ -581,6 +629,43 @@ header.scrolled {
 
 .dish-footer {
     margin-top: auto;
+}
+
+/* Favorite Button */
+.favorite-btn {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 36px;
+    height: 36px;
+    background: rgba(8, 8, 8, 0.7);
+    border: 1px solid var(--color-grey-divider);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all var(--transition-speed);
+    color: var(--color-white);
+}
+
+.favorite-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2px;
+}
+
+.favorite-btn.active {
+    background: var(--color-gold);
+    border-color: var(--color-gold);
+    color: var(--color-bg-deep);
+}
+
+.favorite-btn.active svg {
+    fill: currentColor;
 }
 
 /* Why Choose Us Section */
@@ -862,6 +947,7 @@ footer {
     background-color: var(--color-gold-hover);
 }
 
+
 .footer-bottom {
     border-top: 1px solid var(--color-grey-divider);
     padding-top: 40px;
@@ -1002,7 +1088,6 @@ footer {
     background-color: var(--color-gold);
     color: var(--color-bg-deep);
     border-color: var(--color-gold);
-    box-shadow: 0 0 15px var(--color-gold-glow);
 }
 
 .no-results {
@@ -1319,10 +1404,12 @@ footer {
     .about-story {
         flex-direction: column;
     }
+
     .about-story-img {
         width: 100%;
         height: 350px;
     }
+
     .vision-mission-grid {
         grid-template-columns: 1fr;
     }
@@ -1642,7 +1729,7 @@ footer {
     font-weight: 500;
 }
 
-.form-control.is-invalid + .invalid-feedback {
+.form-control.is-invalid+.invalid-feedback {
     display: block;
 }
 
@@ -1662,7 +1749,7 @@ footer {
     height: 100%;
     background-color: #111;
     background-image: radial-gradient(circle, #222 10%, transparent 11%),
-                      radial-gradient(circle, #222 10%, transparent 11%);
+        radial-gradient(circle, #222 10%, transparent 11%);
     background-size: 20px 20px;
     background-position: 0 0, 10px 10px;
     display: flex;
@@ -1686,12 +1773,19 @@ footer {
 }
 
 @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
         transform: translateY(0);
     }
+
     40% {
         transform: translateY(-20px);
     }
+
     60% {
         transform: translateY(-10px);
     }
@@ -1828,12 +1922,20 @@ footer {
     align-items: center;
     justify-content: center;
     color: var(--color-gold);
+    overflow: hidden;
 }
 
-.user-avatar-large svg {
-    width: 44px;
-    height: 44px;
-    fill: currentColor;
+.user-avatar-large img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-avatar-large .initials {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-gold);
 }
 
 .user-name-title {
@@ -2029,6 +2131,12 @@ footer {
     width: 100%;
     max-width: 550px;
     padding: 40px;
+    background-color: var(--color-bg-dark);
+    /* Ensure modal background adapts */
+    border: 1px solid var(--color-gold);
+    /* Ensure modal border adapts */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+    /* Dark mode default */
     position: relative;
     transform: scale(0.9);
     transition: transform var(--transition-speed) var(--transition-curve);
@@ -2117,7 +2225,11 @@ footer {
     .nav-links {
         display: none;
     }
+
     .hamburger {
         display: flex;
     }
 }
+
+
+/* Specific elements that need explicit color overrides if not using var(--color-white) */

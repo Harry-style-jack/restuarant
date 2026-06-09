@@ -7,6 +7,7 @@
         email: "guest@tastehaven.com",
         phone: "+2347062345820",
         address: "123 Camelot Way, Avalon, NY 10001",
+        profileImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&h=100&q=80", // Default avatar
         password: "password123"
     };
 
@@ -144,7 +145,7 @@ function setupAuthForms() {
     if (loginForm) {
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            
+
             const emailInput = document.getElementById('login-email');
             const passwordInput = document.getElementById('login-password');
             let isValid = true;
@@ -176,7 +177,8 @@ function setupAuthForms() {
                     name: user.name,
                     email: user.email,
                     phone: user.phone || '',
-                    address: user.address || ''
+                    address: user.address || '',
+                    profileImage: user.profileImage || ''
                 }));
                 showToast("Login Successful! Redirecting...", "success");
                 setTimeout(() => {
@@ -235,7 +237,7 @@ function setupAuthForms() {
             if (!isValid) return;
 
             const users = JSON.parse(localStorage.getItem('taste_haven_users') || '[]');
-            
+
             // Check duplicate
             if (users.some(u => u.email.toLowerCase() === emailInput.value.toLowerCase().trim())) {
                 showToast("Email address already registered.", "error");
@@ -249,14 +251,15 @@ function setupAuthForms() {
                 email: emailInput.value.toLowerCase().trim(),
                 phone: phoneInput.value.trim(),
                 address: "", // filled in dashboard later
-                password: passwordInput.value
+                password: passwordInput.value,
+                profileImage: "" // New users start without a profile image
             };
-            
+
             users.push(newUser);
             localStorage.setItem('taste_haven_users', JSON.stringify(users));
 
             showToast("Registration Successful! Please log in.", "success");
-            
+
             // Switch tabs to login
             setTimeout(() => {
                 const loginTab = document.querySelector('.auth-tab[data-tab="login"]');
@@ -285,11 +288,76 @@ function setupDashboard(userSession) {
     if (sidebarName) sidebarName.textContent = userSession.name;
     if (sidebarEmail) sidebarEmail.textContent = userSession.email;
 
+    // Render initial avatar in sidebar
+    renderDashboardUserAvatar(userSession);
+
     // Load initial panel data
     loadProfilePanel(userSession);
     loadOrdersPanel(userSession);
+    loadFavoritesPanel();
+    loadReservationsPanel(userSession);
 
     // Setup Sidebar Tab Navigation
+function loadFavoritesPanel() {
+    const favContainer = document.getElementById('db-favorites-list');
+    if (!favContainer) return;
+
+    const favIds = getFavorites();
+    const items = menuItems.filter(item => favIds.includes(item.id));
+
+    if (items.length === 0) {
+        favContainer.innerHTML = `<p class="text-muted">You haven't saved any favorites yet.</p>`;
+        return;
+    }
+
+    favContainer.innerHTML = '';
+    items.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'premium-card';
+        div.innerHTML = `
+            <div class="dish-img-container" style="height: 150px;">
+                <img src="${item.image}" class="dish-img">
+            </div>
+            <div class="dish-content">
+                <h4 class="dish-title">${item.name}</h4>
+                <p class="dish-price">$${item.price.toFixed(2)}</p>
+                <button class="btn btn-primary btn-small" onclick="addToCartGlobal(${item.id}, '${item.name}', ${item.price}, '${item.image}')">Add to Cart</button>
+            </div>
+        `;
+        favContainer.appendChild(div);
+    });
+}
+
+function loadReservationsPanel(user) {
+    const container = document.getElementById('db-reservations-list');
+    if (!container) return;
+
+    const allRes = JSON.parse(localStorage.getItem('taste_haven_reservations') || '[]');
+    const userRes = allRes.filter(r => r.email === user.email);
+
+    if (userRes.length === 0) {
+        container.innerHTML = `<p class="text-muted">No upcoming reservations found.</p>`;
+        return;
+    }
+
+    let html = '<div class="order-history-list">';
+    userRes.reverse().forEach(res => {
+        html += `
+            <div class="order-card">
+                <div class="order-card-header">
+                    <span class="order-id">Table for ${res.guests}</span>
+                    <span class="order-status delivered">Confirmed</span>
+                </div>
+                <div style="font-size: 0.9rem;">
+                    <p><strong>Date:</strong> ${res.date}</p>
+                    <p><strong>Time:</strong> ${res.time}</p>
+                    <p><strong>Occasion:</strong> ${res.occasion || 'General Dining'}</p>
+                </div>
+            </div>
+        `;
+    });
+    container.innerHTML = html + '</div>';
+}
     const links = document.querySelectorAll('.dashboard-menu-link:not(.logout)');
     const panels = document.querySelectorAll('.dashboard-content-panel');
 
@@ -306,6 +374,31 @@ function setupDashboard(userSession) {
         });
     });
 
+    // File Upload Handler
+    const fileUpload = document.getElementById('db-profile-upload');
+    const fileNameSpan = document.getElementById('db-file-name');
+    let uploadedImageData = null;
+
+    if (fileUpload) {
+        fileUpload.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                if (file.size > 500000) { // 500KB limit for localStorage safety
+                    showToast("Image too large. Please select a file under 500KB.", "error");
+                    fileUpload.value = '';
+                    return;
+                }
+                fileNameSpan.textContent = file.name;
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    uploadedImageData = event.target.result;
+                    renderDashboardUserAvatar({ ...userSession, profileImage: uploadedImageData });
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
     // Setup profile form update handler
     const profileForm = document.getElementById('db-profile-form');
     if (profileForm) {
@@ -315,6 +408,7 @@ function setupDashboard(userSession) {
             const nameVal = document.getElementById('db-name').value.trim();
             const phoneVal = document.getElementById('db-phone').value.trim();
             const addressVal = document.getElementById('db-address').value.trim();
+            const profileImageVal = uploadedImageData || document.getElementById('db-profile-image-url').value.trim(); // Prioritize uploaded image
 
             if (nameVal.length < 3) {
                 showToast("Please enter a valid name.", "error");
@@ -329,12 +423,14 @@ function setupDashboard(userSession) {
                 users[userIndex].name = nameVal;
                 users[userIndex].phone = phoneVal;
                 users[userIndex].address = addressVal;
+                users[userIndex].profileImage = profileImageVal;
                 localStorage.setItem('taste_haven_users', JSON.stringify(users));
             }
 
             // Update session
             userSession.name = nameVal;
             userSession.phone = phoneVal;
+            userSession.profileImage = profileImageVal;
             userSession.address = addressVal;
             localStorage.setItem('taste_haven_session', JSON.stringify(userSession));
 
@@ -342,6 +438,7 @@ function setupDashboard(userSession) {
             if (sidebarName) sidebarName.textContent = nameVal;
             updateUserHeader();
 
+            renderDashboardUserAvatar(userSession); // Update sidebar avatar
             showToast("Profile updated successfully!", "success");
         });
     }
@@ -361,11 +458,40 @@ function loadProfilePanel(user) {
     const emailInput = document.getElementById('db-email');
     const phoneInput = document.getElementById('db-phone');
     const addressInput = document.getElementById('db-address');
+    const profileImageInput = document.getElementById('db-profile-image-url');
 
     if (nameInput) nameInput.value = user.name || '';
     if (emailInput) emailInput.value = user.email || '';
     if (phoneInput) phoneInput.value = user.phone || '';
     if (addressInput) addressInput.value = user.address || '';
+    if (profileImageInput) {
+        if (user.profileImage && user.profileImage.startsWith('data:')) {
+            profileImageInput.value = '';
+            profileImageInput.placeholder = 'Custom image uploaded';
+        } else {
+            profileImageInput.value = user.profileImage || '';
+            profileImageInput.placeholder = 'e.g., https://example.com/my-avatar.jpg';
+        }
+    }
+}
+
+function renderDashboardUserAvatar(user) {
+    const avatarContainer = document.querySelector('.user-avatar-large');
+    if (!avatarContainer) return;
+
+    avatarContainer.innerHTML = ''; // Clear existing content
+
+    if (user.profileImage && (user.profileImage.startsWith('http') || user.profileImage.startsWith('data:'))) {
+        const img = document.createElement('img');
+        img.src = user.profileImage;
+        img.alt = user.name;
+        avatarContainer.appendChild(img);
+    } else {
+        const initials = document.createElement('span');
+        initials.textContent = user.name.charAt(0).toUpperCase();
+        initials.classList.add('initials');
+        avatarContainer.appendChild(initials);
+    }
 }
 
 function loadOrdersPanel(user) {

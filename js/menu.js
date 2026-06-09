@@ -66,6 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         items.forEach(item => {
+            const favorites = getFavorites();
+            const isFavorited = favorites.includes(item.id);
+
             const card = document.createElement('div');
             card.className = 'premium-card';
             card.style.opacity = '0';
@@ -75,6 +78,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="dish-img-container">
                     <img class="dish-img" src="${item.image}" alt="${item.name}" loading="lazy">
                     <span class="dish-category-tag">${item.category}</span>
+                    <button class="favorite-btn ${isFavorited ? 'active' : ''}" data-id="${item.id}">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                    </button>
                 </div>
                 <div class="dish-content">
                     <div class="dish-header">
@@ -91,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
 
             menuGrid.appendChild(card);
-            
+
             // Subtle fade-in animation
             setTimeout(() => {
                 card.style.transition = 'all 0.4s ease';
@@ -103,6 +111,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const addToCartBtn = card.querySelector('.add-to-cart-btn');
             addToCartBtn.addEventListener('click', () => {
                 addToCartGlobal(item.id, item.name, item.price, item.image);
+            });
+
+            // Favorite Toggle Event
+            const favBtn = card.querySelector('.favorite-btn');
+            favBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isAdded = toggleFavoriteGlobal(item.id);
+                favBtn.classList.toggle('active', isAdded);
+                showToast(isAdded ? `Added ${item.name} to favorites` : `Removed ${item.name}`, isAdded ? 'success' : 'error');
             });
         });
     }

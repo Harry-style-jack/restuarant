@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize Global Navbar updates
     updateCartBadge();
     updateUserHeader();
+    updateFavoritesBadge();
 });
 
 // --- Shopping Cart Shared Utilities ---
@@ -63,7 +64,7 @@ function updateCartBadge() {
     const badges = document.querySelectorAll('.cart-count');
     const cart = getCart();
     const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-    
+
     badges.forEach(badge => {
         if (totalCount > 0) {
             badge.textContent = totalCount;
@@ -75,10 +76,51 @@ function updateCartBadge() {
     });
 }
 
+function getFavorites() {
+    try {
+        const favData = localStorage.getItem('taste_haven_favorites');
+        return favData ? JSON.parse(favData) : [];
+    } catch (e) {
+        console.error("Error loading favorites", e);
+        return [];
+    }
+}
+
+function toggleFavoriteGlobal(productId) {
+    let favorites = getFavorites();
+    const index = favorites.indexOf(productId);
+    let added = false;
+
+    if (index > -1) {
+        favorites.splice(index, 1);
+    } else {
+        favorites.push(productId);
+        added = true;
+    }
+
+    localStorage.setItem('taste_haven_favorites', JSON.stringify(favorites));
+    updateFavoritesBadge();
+    window.dispatchEvent(new Event('favoritesUpdated'));
+    return added;
+}
+
+function updateFavoritesBadge() {
+    const badges = document.querySelectorAll('.fav-count');
+    const favorites = getFavorites();
+    badges.forEach(badge => {
+        if (favorites.length > 0) {
+            badge.textContent = favorites.length;
+            badge.style.display = 'flex';
+        } else {
+            badge.style.display = 'none';
+        }
+    });
+}
+
 function addToCartGlobal(productId, productName, productPrice, productImage, quantity = 1) {
     const cart = getCart();
     const existingItem = cart.find(item => item.id === productId);
-    
+
     if (existingItem) {
         existingItem.quantity += quantity;
     } else {
@@ -90,7 +132,7 @@ function addToCartGlobal(productId, productName, productPrice, productImage, qua
             quantity: quantity
         });
     }
-    
+
     saveCart(cart);
     showToast(`Added ${productName} to cart!`, 'success');
 }
@@ -106,7 +148,7 @@ function showToast(message, type = 'success') {
 
     const toast = document.createElement('div');
     toast.className = `toast toast-${type}`;
-    
+
     let svgIcon = '';
     if (type === 'success') {
         svgIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#2ecc71" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>`;
@@ -160,22 +202,28 @@ function getCurrentUser() {
 
 function updateUserHeader() {
     const user = getCurrentUser();
-    const navUserBtn = document.querySelectorAll('.nav-user-btn-container');
+    const navUserBtnContainers = document.querySelectorAll('.nav-user-btn-container');
 
-    navUserBtn.forEach(container => {
+    navUserBtnContainers.forEach(container => {
         if (user) {
             const firstName = user.name.split(' ')[0];
+            let avatarHtml = '';
+
+            if (user.profileImage && (user.profileImage.startsWith('http') || user.profileImage.startsWith('data:'))) {
+                avatarHtml = `<img src="${user.profileImage}" alt="${user.name}" class="profile-avatar">`;
+            } else {
+                avatarHtml = `<span class="profile-initials">${user.name.charAt(0).toUpperCase()}</span>`;
+            }
+
             container.innerHTML = `
-                <a href="dashboard.html" class="nav-user-btn">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                    </svg>
-                    <span>Hi, ${firstName}</span>
+                <a href="dashboard.html" class="nav-user-btn user-logged-in">
+                    ${avatarHtml}
+                    <span class="user-greeting">Hi, ${firstName}</span>
                 </a>
             `;
         } else {
             container.innerHTML = `
-                <a href="login.html" class="nav-user-btn">
+                <a href="login.html" class="nav-user-btn user-logged-out">
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                     </svg>
